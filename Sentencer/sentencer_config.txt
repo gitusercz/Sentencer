@@ -1,0 +1,4 @@
+﻿; here the last sentence numbers are stored
+[last_displayed_sentence_numbers]
+upper = 1
+lower = 1
