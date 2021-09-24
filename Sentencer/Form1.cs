@@ -252,6 +252,20 @@ namespace Sentencer
 
         private void Form1_KeyPress(object sender, KeyPressEventArgs e)
         {
+            if (e.KeyChar == 104)  // h key
+            {
+                button1.Text = "Num5, j";
+                button2.Text = "Num7, u";
+                button3.Text = "Num9, i";
+                button4.Text = "Num1, n";
+                button5.Text = "Num3, m";
+                button7.Text = "Num6, k";
+                timer1.Enabled = true;
+
+
+            }
+
+
             if (e.KeyChar == 106)  // j key
                 TextMove_MoveOnWithBoth();
 
@@ -434,6 +448,22 @@ namespace Sentencer
         private void Form1_Resize(object sender, EventArgs e)
         {
             resizeChildrenControls();
+        }
+
+        private void Form1_KeyUp(object sender, KeyEventArgs e)
+        {
+            
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            button1.Text = "Next Sentence";
+            button2.Text = "-1";
+            button3.Text = "+1";
+            button4.Text = "-1";
+            button5.Text = "+1";
+            button7.Text = "Match Pair";
+            timer1.Enabled = false;
         }
     }
 }
