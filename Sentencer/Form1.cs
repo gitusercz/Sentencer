@@ -25,6 +25,7 @@ namespace Sentencer
         private Rectangle button4OriginalRect;
         private Rectangle button5OriginalRect;
         private Rectangle button7OriginalRect;
+        private Rectangle button8OriginalRect;
 
         private Size formOriginalSize;
 
@@ -176,6 +177,7 @@ namespace Sentencer
             button4OriginalRect = new Rectangle(button4.Location.X, button4.Location.Y, button4.Width, button4.Height);
             button5OriginalRect = new Rectangle(button5.Location.X, button5.Location.Y, button5.Width, button5.Height);
             button7OriginalRect = new Rectangle(button7.Location.X, button7.Location.Y, button7.Width, button7.Height);
+            button8OriginalRect = new Rectangle(button8.Location.X, button8.Location.Y, button8.Width, button8.Height);
 
 
             //Displaying the first sentences
@@ -203,6 +205,7 @@ namespace Sentencer
             resizeControl(button4OriginalRect, button4);
             resizeControl(button5OriginalRect, button5);
             resizeControl(button7OriginalRect, button7);
+            resizeControl(button8OriginalRect, button8);
         }
 
         private void resizeControl(Rectangle originalControlRect, Control control)
@@ -464,6 +467,31 @@ namespace Sentencer
             button5.Text = "+1";
             button7.Text = "Match Pair";
             timer1.Enabled = false;
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            // Adding a new line into the Logfile in "+	2021. 03. 22. 22:13:33	10 --> 9" format
+            File.AppendAllText(Path.Combine(System.IO.Path.GetDirectoryName(Assembly.GetEntryAssembly().Location), "ReadLog.txt"), string.Format("{0}{1}{2}{3}{4}{5}{6}{7}{8}{9}", "+", "\t", DateTime.Now.ToString(), "\t", upper_sentence_to_be_displayed.ToString(), "\t", "-->", "\t", lower_sentence_to_be_displayed.ToString(), Environment.NewLine));
+            toolStripStatusLabel1.Text = string.Format("Upper text sentence no: {0}    |  Lower text sentence no: {1}      | Pair created! ", upper_sentence_to_be_displayed, lower_sentence_to_be_displayed);
+
+
+            // Adding a new line into the logfile in actual sentences format. Not used as it messes up the logfile with the \r\n-s. 
+            //File.AppendAllText(Path.Combine(System.IO.Path.GetDirectoryName(Assembly.GetEntryAssembly().Location), "ReadLog.txt"), string.Format("{0}{1}{2}{3}{4}{5}{6}{7}", "+", "\t", DateTime.Now.ToString(), "\t", Sentence_locator(upper_sentence_to_be_displayed, upper_string_todisplay), " --> ", Sentence_locator(lower_sentence_to_be_displayed, lower_string_todisplay), Environment.NewLine));
+
+            // Turning the StritStatuslabel to green, but this green is too green, and for other buttonpresses I'd need to change it back, so this feature is unused
+            // A nice list of available colors to use: 
+            // http://www.flounder.com/csharp_color_table.htm
+
+            toolStripStatusLabel1.BackColor = Color.Lime;
+            timer2.Enabled = true;
+
+        }
+
+        private void timer2_Tick(object sender, EventArgs e)
+        {
+            TextMove_MoveOnWithBoth();
+            timer2.Enabled = false;
         }
     }
 }
