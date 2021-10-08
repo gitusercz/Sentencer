@@ -158,7 +158,7 @@ namespace Sentencer
             File.AppendAllText(Path.Combine(System.IO.Path.GetDirectoryName(Assembly.GetEntryAssembly().Location), "ReadLog.txt"), string.Format("{0}{1}{2}{3}{4}{5}", "-", "\t", DateTime.Now.ToString(), "\t", "Sentencer Started ", Environment.NewLine));
 
             //Deleting resudie converion files if there is any at strtup
-            File.Delete(Path.Combine(System.IO.Path.GetDirectoryName(Assembly.GetEntryAssembly().Location), "Kindlegen", "Példa.htm"));
+            File.Delete(Path.Combine(System.IO.Path.GetDirectoryName(Assembly.GetEntryAssembly().Location), "Kindlegen", "Source.htm"));
             File.Delete(Path.Combine(System.IO.Path.GetDirectoryName(Assembly.GetEntryAssembly().Location), "Kindlegen", "példa.mobi"));
 
             if (Directory.Exists(Path.Combine(System.IO.Path.GetDirectoryName(Assembly.GetEntryAssembly().Location), "Kindlegen", "Példa_files"))) Directory.Delete(Path.Combine(System.IO.Path.GetDirectoryName(Assembly.GetEntryAssembly().Location), "Kindlegen", "Példa_files"), true);
@@ -291,7 +291,7 @@ namespace Sentencer
 
                 //Adding a page to the temp HTML
 
-                //File.AppendAllText(Path.Combine(System.IO.Path.GetDirectoryName(Assembly.GetEntryAssembly().Location), "Kindlegen", "Példa.htm"), add_page((Sentence_locator(upper_sentence_to_be_displayed, upper_string_todisplay)), Sentence_locator(lower_sentence_to_be_displayed, lower_string_todisplay)) );
+                //File.AppendAllText(Path.Combine(System.IO.Path.GetDirectoryName(Assembly.GetEntryAssembly().Location), "Kindlegen", "Source.htm"), add_page((Sentence_locator(upper_sentence_to_be_displayed, upper_string_todisplay)), Sentence_locator(lower_sentence_to_be_displayed, lower_string_todisplay)) );
 
                 //Ekkor jövök rá, hogy a file írásakor az ékezetes betűket rosszul írja a c#
                 //Viszatérő baj és találtam rá megoldást: 
@@ -305,12 +305,12 @@ namespace Sentencer
                     if (line_to_be_processed[0] == '+')
                     {
                         string[] splitstring = Regex.Split(line_to_be_processed, @"\t"); // [2] and [4] hold the correct upper and lower values
-                        File.AppendAllText(Path.Combine(System.IO.Path.GetDirectoryName(Assembly.GetEntryAssembly().Location), "Kindlegen", "Példa.htm"), add_page((Sentence_locator(Int32.Parse(splitstring[2]), upper_string_todisplay)), Sentence_locator(Int32.Parse(splitstring[4]), lower_string_todisplay)));
+                        File.AppendAllText(Path.Combine(System.IO.Path.GetDirectoryName(Assembly.GetEntryAssembly().Location), "Kindlegen", "Source.htm"), add_page((Sentence_locator(Int32.Parse(splitstring[2]), upper_string_todisplay)), Sentence_locator(Int32.Parse(splitstring[4]), lower_string_todisplay)));
                     }
                 }
 
                 //Adding trailing close
-                File.AppendAllText(Path.Combine(System.IO.Path.GetDirectoryName(Assembly.GetEntryAssembly().Location), "Kindlegen", "Példa.htm"), string.Concat("</div>", Environment.NewLine, Environment.NewLine, "</body>", Environment.NewLine, Environment.NewLine, "</html>", Environment.NewLine));
+                File.AppendAllText(Path.Combine(System.IO.Path.GetDirectoryName(Assembly.GetEntryAssembly().Location), "Kindlegen", "Source.htm"), string.Concat("</div>", Environment.NewLine, Environment.NewLine, "</body>", Environment.NewLine, Environment.NewLine, "</html>", Environment.NewLine));
 
                 //Running the conversion
                 System.Diagnostics.Process process = new System.Diagnostics.Process();
@@ -318,7 +318,7 @@ namespace Sentencer
                 startInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden;
                 startInfo.WorkingDirectory = Path.Combine(System.IO.Path.GetDirectoryName(Assembly.GetEntryAssembly().Location), "Kindlegen");
                 startInfo.FileName = "cmd.exe";
-                startInfo.Arguments = "/C .\\kindlegen .\\Példa.htm -c0 -o példa.mobi";
+                startInfo.Arguments = "/C .\\kindlegen .\\Source.htm -c0 -o output.mobi";
                 process.StartInfo = startInfo;
                 process.Start();
 
