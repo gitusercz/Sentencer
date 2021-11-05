@@ -44,6 +44,7 @@
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.button8 = new System.Windows.Forms.Button();
             this.timer2 = new System.Windows.Forms.Timer(this.components);
+            this.button9 = new System.Windows.Forms.Button();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -172,11 +173,22 @@
             this.timer2.Tag = "to handle button8";
             this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
             // 
+            // button9
+            // 
+            this.button9.Location = new System.Drawing.Point(168, 270);
+            this.button9.Name = "button9";
+            this.button9.Size = new System.Drawing.Size(253, 33);
+            this.button9.TabIndex = 12;
+            this.button9.Text = "Note it!";
+            this.button9.UseVisualStyleBackColor = true;
+            this.button9.Click += new System.EventHandler(this.button9_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(612, 405);
+            this.Controls.Add(this.button9);
             this.Controls.Add(this.button8);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.button7);
@@ -221,6 +233,7 @@
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Button button8;
         private System.Windows.Forms.Timer timer2;
+        private System.Windows.Forms.Button button9;
     }
 }
 
