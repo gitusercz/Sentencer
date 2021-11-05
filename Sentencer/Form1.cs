@@ -26,6 +26,7 @@ namespace Sentencer
         private Rectangle button5OriginalRect;
         private Rectangle button7OriginalRect;
         private Rectangle button8OriginalRect;
+        private Rectangle button9OriginalRect;
 
         private Size formOriginalSize;
 
@@ -214,6 +215,7 @@ namespace Sentencer
             button5OriginalRect = new Rectangle(button5.Location.X, button5.Location.Y, button5.Width, button5.Height);
             button7OriginalRect = new Rectangle(button7.Location.X, button7.Location.Y, button7.Width, button7.Height);
             button8OriginalRect = new Rectangle(button8.Location.X, button8.Location.Y, button8.Width, button8.Height);
+            button9OriginalRect = new Rectangle(button9.Location.X, button9.Location.Y, button9.Width, button9.Height);
 
 
             //Displaying the first sentences
@@ -242,6 +244,7 @@ namespace Sentencer
             resizeControl(button5OriginalRect, button5);
             resizeControl(button7OriginalRect, button7);
             resizeControl(button8OriginalRect, button8);
+            resizeControl(button9OriginalRect, button9);
         }
 
         private void resizeControl(Rectangle originalControlRect, Control control)
